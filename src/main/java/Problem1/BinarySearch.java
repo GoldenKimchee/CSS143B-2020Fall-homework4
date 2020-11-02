@@ -1,23 +1,22 @@
 package Problem1;
 
 public class BinarySearch {
-    // This is to be done recursively
-    // Do not change signature (return type, function name, parameter types)
-    // Add a helper function for recursion calls
+    // Main function that calls the helper function
     public static int binarySearch(int[] data, int target) {
         if (data == null || data.length == 0) {
             return -1;
         }
-        return binarySearch(data, target, 0, data.length - 1);  // place holder
+        return binarySearch(data, target, 0, data.length - 1);
     }
 
     //helper function
+    //Does the bulk of the work, solves the subproblems
     public static int binarySearch(int[] data, int target, int start, int end) {
-        if (start > end) { //target not found
+        if (start > end) { //target not found in array
             return -1;
         }
 
-        int mid = (start + end) / 2; //main operation
+        int mid = (start + end) / 2; //find middle index to compare with
 
         if (data[mid] == target) { //found target
             return mid;

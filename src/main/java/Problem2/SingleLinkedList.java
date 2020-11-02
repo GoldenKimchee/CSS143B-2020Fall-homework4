@@ -69,6 +69,24 @@ public class SingleLinkedList {
 
     // reverse the linked list RECURSIVELY
     public void reverse() {
-        // homework
+        if (head.next == null) { //if no items do nothing
+            return;
+        } else {
+            reverse(head.next);
+        }
+    }
+
+    //helper function
+    public void reverse(ListNode node) {
+        if (node.next == null) { //if last item in list, have dummy node point here (new starting node)
+            head.next = node;
+            return;
+        }
+        //recursively call for next element. travel till end of the list
+        reverse(node.next);
+
+        //return to previous call stack and reverses the node pointers
+        node.next.next = node;
+        node.next = null;
     }
 }
