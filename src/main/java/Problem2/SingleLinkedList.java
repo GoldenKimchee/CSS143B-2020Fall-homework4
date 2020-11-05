@@ -78,8 +78,9 @@ public class SingleLinkedList {
 
     //helper function
     public void reverse(ListNode node) {
+        //Stopping condition
         if (node.next == null) { //if last item in list, have dummy node point here (new starting node)
-            head.next = node;
+            head.next = node; //dummy node now points to element at end of list
             return;
         }
         //recursively call for next element. travel till end of the list
