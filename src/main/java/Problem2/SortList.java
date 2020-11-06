@@ -44,33 +44,26 @@ public class SortList {
 
 
     public static ListNode mergeLists(ListNode list1, ListNode list2) {
-        ListNode temp1 = list1;
-        ListNode temp2 = list2;
-        ListNode merged = null;
-        //
-        //
-        while (temp1 != null || temp2 != null) { //both have to be empty
-            if (temp1.val < temp2.val) {
-                merged = temp1;
-                temp1 = temp1.next;
-            } else if (temp1.val > temp2.val || temp1.val == temp2.val) {
-                merged = temp2;
-                temp2 = temp2.next;
-            } else if (temp1 == null) {
-                while (temp2 != null) {
-                    merged = temp2;
-                    temp2 = temp2.next;
-                    merged = merged.next;
-                }
-            } else if (temp2 == null) {
-                while (temp1 != null) {
-                    merged = temp1;
-                    temp1 = temp1.next;
-                    merged = merged.next;
-                }
+        ListNode head = new ListNode(); //sort of like dummy node
+        ListNode pointer = head; //so that the original head is not changed. only want to set what "next" will point to
+
+        while (list1 != null && list2 != null) { //continue loop as long as both lists have element left
+            if (list1.val < list2.val) {
+                pointer.next = list1; //set up next item in the list we will return
+                list1 = list1.next; //move to next item in list1
+            } else { //if list1.val > list2.val or equal to each other
+                pointer.next = list2;
+                list2 = list2.next;
             }
-            merged = merged.next;
+            pointer = pointer.next; //move over one step in the list
         }
-        return merged;
+
+        if (list1 != null) { //if list1 has items left, while list2 has no more items
+            pointer.next = list1; //set pointer.next to the list1, since list1 contains the references to the rest
+            //of its items
+        } else { //if list2 has items left, while list1 has no more items
+            pointer.next = list2;
+        }
+        return head.next; //skips over "dummy" node
     }
 }
