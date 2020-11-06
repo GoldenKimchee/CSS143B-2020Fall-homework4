@@ -17,7 +17,6 @@ public class SortList {
         return mergeLists(sortList(head), sortList(mid)); //split into halves until element by itself and put together
     }
 
-
     //makes two passes
     public static ListNode findMidAndBreak(ListNode head) {
         if (head == null || head.next == null) {
@@ -41,7 +40,6 @@ public class SortList {
         temp.next = null; //have the current node (at halfway point) now point to null (splits list in half)
         return address; //reference to the middle node
     }
-
 
     public static ListNode mergeLists(ListNode list1, ListNode list2) {
         ListNode head = new ListNode(); //sort of like dummy node
